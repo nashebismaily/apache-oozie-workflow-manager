@@ -1,0 +1,20 @@
+<workflow-app name="Shell Action"
+	xmlns="uri:oozie:workflow:0.5">
+	<start to="shell_action"/>
+	<action name="shell_action">
+		<shell
+			xmlns="uri:oozie:shell-action:0.3">
+			<job-tracker>${resourceManager}</job-tracker>
+			<name-node>${nameNode}</name-node>
+			<exec>echo</exec>
+			<argument>"hello world"</argument>
+			<capture-output></capture-output>
+		</shell>
+		<ok to="end"/>
+		<error to="kill"/>
+	</action>
+	<kill name="kill">
+		<message>${wf:errorMessage(wf:lastErrorNode())}</message>
+	</kill>
+	<end name="end"/>
+</workflow-app>

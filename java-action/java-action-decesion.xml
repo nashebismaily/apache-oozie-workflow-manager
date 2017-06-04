@@ -1,0 +1,25 @@
+<workflow-app name="Part 5 - Java"
+	xmlns="uri:oozie:workflow:0.5">
+	<start to="java-node"/>
+	<decision name="decision">
+		<switch>
+			<case to="end">${(wf:actionData('java-node')['key1'] == "value1") and (wf:actionData('java-node')['key2'] == "value2")}</case>
+			<default to="kill"/>
+		</switch>
+	</decision>
+	<action name="java-node">
+		<java>
+			<job-tracker>${resourceManager}</job-tracker>
+			<name-node>${nameNode}</name-node>
+			<main-class>org.apache.oozie.examples.ExampleDecision</main-class>
+			<arg>yes</arg>
+			<capture-output></capture-output>
+		</java>
+		<ok to="decision_1"/>
+		<error to="kill"/>
+	</action>
+	<kill name="kill">
+		<message>java failed, error message [${wf:errorMessage(wf:lastErrorNode())}]</message>
+	</kill>
+	<end name="end"/>
+</workflow-app>

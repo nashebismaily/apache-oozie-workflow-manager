@@ -1,0 +1,28 @@
+<workflow-app name="Part 4 -Pig"
+	xmlns="uri:oozie:workflow:0.5">
+	<start to="pig_action"/>
+	<action name="pig_action">
+		<pig>
+			<job-tracker>${resourceManager}</job-tracker>
+			<name-node>${nameNode}</name-node>
+			<configuration>
+				<property>
+					<name>oozie.action.sharelib.for.pig</name>
+					<value>hive,pig,hcatalog</value>
+				</property>
+				<property>
+					<name>hive.metastore.uris</name>
+					<value>thrift://hdp5.nismaily.com:9083</value>
+				</property>
+			</configuration>
+			<script>/user/admin/sample.pig</script>
+			<file>/user/admin//sample.pig</file>
+		</pig>
+		<ok to="end"/>
+		<error to="kill"/>
+	</action>
+	<kill name="kill">
+		<message>${wf:errorMessage(wf:lastErrorNode())}</message>
+	</kill>
+	<end name="end"/>
+</workflow-app>
