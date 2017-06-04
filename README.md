@@ -1,4 +1,4 @@
-# Oozie Workflow Manager Examples
+ Workflow Manager Examples
 
 Workflow Manager, which can be accessed as a View in Ambari, allows you to easily create and schedule workflows and monitor workflow jobs. It is based on the Apache Oozie workflow engine that allows users to connect and automate the execution of big data processing tasks into a defined workflow.   
 
@@ -12,7 +12,7 @@ Use Oozie to execute a simple bash command
 
 ## Java Action
 
-Use Oozie to execute a Java class and make a decesion based on the output
+Use Oozie to execute a Java class and make a decision based on the output
 
 ## Pig Action
 
