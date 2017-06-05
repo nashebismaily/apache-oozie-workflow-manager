@@ -1,4 +1,4 @@
- Workflow Manager Examples
+# Workflow Manager Examples
 
 Workflow Manager, which can be accessed as a View in Ambari, allows you to easily create and schedule workflows and monitor workflow jobs. It is based on the Apache Oozie workflow engine that allows users to connect and automate the execution of big data processing tasks into a defined workflow.   
 
